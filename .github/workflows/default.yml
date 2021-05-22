@@ -9,8 +9,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: build focal-colcon:latest
     - uses: actions/checkout@v2
+    - name: build focal-colcon:latest
       run: |
         docker build . -t ${IMAGE_NAME}:latest
     - name: push focal-colcon:latest
