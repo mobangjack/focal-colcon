@@ -15,5 +15,5 @@ jobs:
         docker build . -t ${IMAGE_NAME}:latest
     - name: push focal-colcon:latest
       run: |
-        docker tag ${IMAGE_NAME} ${{ secrets.DOCKER_USERNAME }}/${IMAGE_NAME}:latest
+        docker tag ${IMAGE_NAME}:latest ${{ secrets.DOCKER_USERNAME }}/${IMAGE_NAME}:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/${IMAGE_NAME}:latest
