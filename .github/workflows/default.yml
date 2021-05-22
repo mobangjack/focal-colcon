@@ -1,0 +1,19 @@
+name: build and deploy
+
+on: [push, pull_request]
+
+env:
+  IMAGE_NAME: focal-colcon
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: build focal-colcon:latest
+    - uses: actions/checkout@v2
+      run: |
+        docker build . -t ${IMAGE_NAME}:latest
+    - name: push focal-colcon:latest
+      run: |
+        docker tag ${IMAGE_NAME} ${{ secrets.DOCKER_USERNAME }}/${IMAGE_NAME}:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/${IMAGE_NAME}:latest
